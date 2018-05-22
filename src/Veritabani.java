@@ -2,6 +2,7 @@
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.Statement;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -16,13 +17,13 @@ public class Veritabani {
          
          // Nesne oluşturmak için gerekli yapıcı method
          
-         public Veritabani(){
-             
+         public Veritabani() throws ClassNotFoundException{
+             Class.forName("com.mysql.jdbc.Connection");
          }
          
         public void baglan()throws SQLException{            
             // mysql veritabanimiza gerekli bilgilerle baglaniyoruz
-            con =(Connection)DriverManager.getConnection ("jdbc:mysql://localhost:3306/VERITABANI_ISMI?useUnicode=true&characterEncoding=utf-8","kullanici_adi","sifre");
+            con =(Connection)DriverManager.getConnection ("jdbc:mysql://localhost:3306/ilan?useUnicode=true&characterEncoding=utf-8","root","8520");
             System.out.println("Baglandı");
         }
         
@@ -181,7 +182,7 @@ public class Veritabani {
         public int guncelleRenk(Renk renk,int id) throws SQLException{
             baglan();
             Statement stmt = (Statement) con.createStatement();
-            String sorgu = "UPDATE Tbl_Renk SET Renk='"+renk.getRenk()+"' WHERE ArabaID='"+id+"'";
+            String sorgu = "UPDATE Tbl_Renk SET Renk='"+renk.getRenk()+"' WHERE RenkID='"+id+"'";
             
             int res = stmt.executeUpdate(sorgu);
             
@@ -416,6 +417,9 @@ public class Veritabani {
    
         }
         
+        
+        
+        
         public ArrayList<Ilan> gosterIlan()throws SQLException {
             System.out.println("çalıştı");
             baglan();
@@ -475,12 +479,105 @@ public class Veritabani {
                 Ilan ilan = new Ilan(rs.getInt("IlanID"),rs.getString("Ilan_Adi"),
                         rs.getInt("Ilan_Fiyat"),rs.getInt("Ilan_Km"),rs.getDate("Ilan_Tarih"),
                         rs.getInt("Ilan_ArabaID"),rs.getInt("Ilan_SehirID"));
-               // System.out.println(rs.getString("Renk"));
+               
                 returnList.add(ilan);
             }
            
             
             baglantiyiKes();
             return returnList;
+        }
+        
+        
+        /*---------------------------------------------------------*/
+        
+       public Renk gosterIlanRenk(int id)throws SQLException{
+            System.out.println("çalıştı");
+            Renk renk = new Renk();
+            baglan();
+            
+            Statement stmt = (Statement) con.createStatement();
+            String sorgu = "SELECT * FROM Tbl_Renk WHERE RenkID="+id;
+            ResultSet rs=stmt.executeQuery(sorgu);
+    
+            while(rs.next()){
+                renk = new Renk(rs.getString("Renk"),rs.getInt("RenkID"));
+               // System.out.println(rs.getString("Renk"));
+            }
+            baglantiyiKes();
+            return renk;
+   
+        }
+    public Sehir gosterIlanSehir(int id)throws SQLException{
+            System.out.println("çalıştı");
+            Sehir sehir = new Sehir();
+            baglan();
+            
+            Statement stmt = (Statement) con.createStatement();
+            String sorgu = "SELECT * FROM Tbl_Sehir WHERE SehirID="+id;
+            ResultSet rs=stmt.executeQuery(sorgu);
+    
+            while(rs.next()){
+                sehir = new Sehir(rs.getString("Sehir"),rs.getInt("SehirID"));
+               // System.out.println(rs.getString("Renk"));
+            }
+            baglantiyiKes();
+            return sehir;
+   
+        }
+       public Vites gosterIlanVites(int id)throws SQLException{
+            System.out.println("çalıştı");
+            Vites vites = new Vites();
+            baglan();
+            
+            Statement stmt = (Statement) con.createStatement();
+            String sorgu = "SELECT * FROM Tbl_VitesTuru WHERE VitesTuruID="+id;
+            ResultSet rs=stmt.executeQuery(sorgu);
+    
+            while(rs.next()){
+                vites = new Vites(rs.getString("Vites_Turu"),rs.getInt("VitesTuruID"));
+               // System.out.println(rs.getString("Renk"));
+            }
+            baglantiyiKes();
+            return vites;
+   
+        }
+    public Yakit gosterIlanYakit(int id)throws SQLException{
+            System.out.println("çalıştı");
+            Yakit yakit = new Yakit();
+            baglan();
+            
+            Statement stmt = (Statement) con.createStatement();
+            String sorgu = "SELECT * FROM Tbl_YakitTuru WHERE YakitTuruID="+id;
+            ResultSet rs=stmt.executeQuery(sorgu);
+    
+            while(rs.next()){
+                yakit = new Yakit(rs.getString("Yakit_Turu"),rs.getInt("YakitTuruID"));
+               // System.out.println(rs.getString("Renk"));
+            }
+            baglantiyiKes();
+            return yakit;
+   
+        }
+        
+            public Araba gosterIlanAraba(int id)throws SQLException{
+            Araba araba = new Araba();
+            System.out.println("çalıştı");
+            baglan();
+            
+            Statement stmt = (Statement) con.createStatement();
+            String sorgu = "SELECT * FROM Tbl_Araba WHERE ArabaID="+id;
+            ResultSet rs=stmt.executeQuery(sorgu);
+
+            while(rs.next()){
+                araba = new Araba(rs.getInt("ArabaID"),rs.getString("Araba_Marka"),
+                        rs.getString("Araba_Model"),rs.getInt("Araba_VitesTuruID"),rs.getInt("Araba_YakitTuruID"),
+                        rs.getInt("Araba_RenkID"));
+               // System.out.println(rs.getString("Renk"));
+                
+            }
+            baglantiyiKes();
+            return araba;
+   
         }
 }

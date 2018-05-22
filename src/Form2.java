@@ -15,20 +15,26 @@ import javax.swing.JOptionPane;
 
 
 public class Form2 extends javax.swing.JFrame {
-
-   // Form1'de yaptığımız gibi global değişkenler ve nesneler..
-    Veritabani vt = new Veritabani();
-    ArrayList<Ilan> ilan = new ArrayList<>();
+    Veritabani vt;
+// Form1'de yaptığımız gibi global değişkenler ve nesneler..
+        ArrayList<Ilan> ilan = new ArrayList<>();
+    ArrayList<Araba> araba = new ArrayList<>();
     ArrayList<Renk> renk = new ArrayList<>();
     ArrayList<Vites> vites = new ArrayList<>();
     ArrayList<Yakit> yakit = new ArrayList<>();
     ArrayList<Sehir> sehir = new ArrayList<>();
+ 
     int seciliRenk ;
     int seciliYakit;
     int seciliVites;
     int seciliSehir;
     
     public Form2() {
+        try {
+            this.vt = new Veritabani();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Form2.class.getName()).log(Level.SEVERE, null, ex);
+        }
         initComponents();
         
         // Form1'deki gibi form açıldığında comboboxları doldurmak için methodları çağırdık.
@@ -192,12 +198,7 @@ public class Form2 extends javax.swing.JFrame {
         km_h.setSelected(true);
         km_h.setText("Herhangi");
 
-        liste.setFont(new java.awt.Font("Ubuntu", 0, 10)); // NOI18N
-        liste.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
+        liste.setFont(new java.awt.Font("Ubuntu", 0, 12)); // NOI18N
         jScrollPane1.setViewportView(liste);
 
         tarih_h.setSelected(true);
@@ -244,63 +245,59 @@ public class Form2 extends javax.swing.JFrame {
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(tarih_h)
                                     .addComponent(vites_h)
-                                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap())
+                                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel6)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(yakit_CB, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(yakit_h)
-                                .addGap(0, 526, Short.MAX_VALUE))))
+                                .addComponent(yakit_h))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel12)
+                            .addComponent(jLabel14))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel12)
-                                    .addComponent(jLabel14))
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(fiyat_min, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(km_min, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(4, 4, 4)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(4, 4, 4)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(fiyat_max, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)
+                                    .addComponent(km_max))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(fiyat_min, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(km_min, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(4, 4, 4)
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                        .addGap(4, 4, 4)
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(fiyat_max, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)
-                                            .addComponent(km_max))
+                                        .addComponent(jLabel1)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                                .addComponent(jLabel1)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(km_h))
-                                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                                .addComponent(jLabel16)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(fiyat_h))))
+                                        .addComponent(km_h))
                                     .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(renk_CB, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(renk_h))))
+                                        .addComponent(jLabel16)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(fiyat_h))))
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(ilanadi_tf, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(sehir_CB, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(sehir_h)))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                                .addComponent(renk_CB, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(renk_h))))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ilanadi_tf, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(sehir_CB, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(sehir_h)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 656, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -368,9 +365,10 @@ public class Form2 extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButton1)
                             .addComponent(jLabel15)
-                            .addComponent(isim_CB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 415, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(44, Short.MAX_VALUE))
+                            .addComponent(isim_CB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 46, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1))
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("İlan Filtrele", jPanel2);
@@ -659,6 +657,22 @@ public class Form2 extends javax.swing.JFrame {
     }
 
     
+     /*---------------------------------------------------------------------------*/
+     
+       public String ArabaBilgileri(int ID) throws SQLException{
+        Araba araba=vt.gosterIlanAraba(ID);//Veritabanından araba bilgilerini çekip ekrana yazdırıyoruz.
+        String bilgi=
+                araba.getMarka()+" "
+                +araba.getModel()+" "
+                +vt.gosterIlanRenk(araba.getRenkID()).getRenk()+" "
+                +vt.gosterIlanVites(araba.getVitesID()).getVites()+" "
+                +vt.gosterIlanYakit(araba.getYakitID()).getYakit();
+        return bilgi;
+    }
+     
+     
+     /*---------------------------------------------------------------------------*/
+     
     void gosterRenk() throws SQLException{     
         renk = vt.gosterRenk();
         DefaultComboBoxModel<String> cm=new DefaultComboBoxModel<>();
@@ -730,13 +744,29 @@ public class Form2 extends javax.swing.JFrame {
        
         try {
             ilan = vt.gosterIlan(filtreKontrol());
+            araba = vt.gosterAraba();
         } catch (SQLException ex) {
             Logger.getLogger(Form2.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+        
         for (Ilan i : ilan) {
-            list.addElement(i.getIlanAdi());
+            
+            
+            try {
+                list.addElement("İlan Adı: "+i.getIlanAdi()+" | Fiyat : "+i.getFiyat()+
+                        " | Km : "+i.getKm()+" | Tarih : "+i.getTarih()+" "+
+                                " | Araba Bilgileri : "+ArabaBilgileri(i.getArabaID())+""
+                                        + " | Şehir : "+vt.gosterIlanSehir(i.getSehirID()).getSehirAdi());
+                
+                
+            } catch (SQLException ex) {
+                Logger.getLogger(Form2.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
+        
+
+        
         
         liste.setModel(list);
         

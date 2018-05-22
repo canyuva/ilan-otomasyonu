@@ -16,12 +16,10 @@ import javax.swing.JOptionPane;
 
 
 public class Form1 extends javax.swing.JFrame {
-
     
-    // gerekli global değişkenler ve nesneler
-    
-    Veritabani vt = new Veritabani();
-    ArrayList<Ilan> ilan = new ArrayList<>();
+    Veritabani vt;
+// gerekli global değişkenler ve nesneler
+        ArrayList<Ilan> ilan = new ArrayList<>();
     ArrayList<Araba> araba = new ArrayList<>();
     ArrayList<Renk> renk = new ArrayList<>();
     ArrayList<Vites> vites = new ArrayList<>();
@@ -35,6 +33,11 @@ public class Form1 extends javax.swing.JFrame {
     int seciliIlan;
     
     public Form1() {
+        try {
+            this.vt = new Veritabani();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Form1.class.getName()).log(Level.SEVERE, null, ex);
+        }
         try {
             initComponents();
             
@@ -313,11 +316,11 @@ public class Form1 extends javax.swing.JFrame {
                                     .addComponent(jLabel8))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(ilanadi)
                                     .addComponent(fiyat)
                                     .addComponent(km)
-                                    .addComponent(arabaCB, 0, 247, Short.MAX_VALUE)
-                                    .addComponent(sehirCB, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                                    .addComponent(arabaCB, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(sehirCB, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(ilanadi, javax.swing.GroupLayout.PREFERRED_SIZE, 393, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addComponent(ekle_vites)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel1Layout.createSequentialGroup()
@@ -348,8 +351,8 @@ public class Form1 extends javax.swing.JFrame {
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(sehir_input, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(180, 180, 180))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(ekle_renk)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -381,7 +384,7 @@ public class Form1 extends javax.swing.JFrame {
                                         .addComponent(jLabel17)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(renk_input, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(102, 102, 102))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -994,11 +997,11 @@ public class Form1 extends javax.swing.JFrame {
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addComponent(jLabel24)
                                         .addGap(139, 139, 139)))
-                                .addContainerGap(271, Short.MAX_VALUE))
+                                .addContainerGap(493, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(vitessilCB, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(283, Short.MAX_VALUE))))
+                                .addContainerGap(448, Short.MAX_VALUE))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(renksilBT, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1067,8 +1070,8 @@ public class Form1 extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 834, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1099, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1282,6 +1285,12 @@ public class Form1 extends javax.swing.JFrame {
             } catch (SQLException ex) {
                 Logger.getLogger(Form1.class.getName()).log(Level.SEVERE, null, ex);
             }
+            
+            try {
+                gosterIlan();
+            } catch (SQLException ex) {
+                Logger.getLogger(Form1.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
        }
     }//GEN-LAST:event_ekle_ilanActionPerformed
@@ -1295,6 +1304,12 @@ public class Form1 extends javax.swing.JFrame {
         {
             try {
                 vt.silRenk(seciliRenk);
+            } catch (SQLException ex) {
+                Logger.getLogger(Form1.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+             try {
+                gosterRenk();
             } catch (SQLException ex) {
                 Logger.getLogger(Form1.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -1313,6 +1328,12 @@ public class Form1 extends javax.swing.JFrame {
             } catch (SQLException ex) {
                 Logger.getLogger(Form1.class.getName()).log(Level.SEVERE, null, ex);
             }
+            
+             try {
+                gosterAraba();
+            } catch (SQLException ex) {
+                Logger.getLogger(Form1.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_arabasilBTActionPerformed
 
@@ -1325,6 +1346,12 @@ public class Form1 extends javax.swing.JFrame {
         {
             try {
                 vt.silSehir(seciliSehir);
+            } catch (SQLException ex) {
+                Logger.getLogger(Form1.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+             try {
+                gosterSehir();
             } catch (SQLException ex) {
                 Logger.getLogger(Form1.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -1343,6 +1370,12 @@ public class Form1 extends javax.swing.JFrame {
             } catch (SQLException ex) {
                 Logger.getLogger(Form1.class.getName()).log(Level.SEVERE, null, ex);
             }
+            
+             try {
+                gosterVites();
+            } catch (SQLException ex) {
+                Logger.getLogger(Form1.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_vitessilBTActionPerformed
 
@@ -1355,6 +1388,12 @@ public class Form1 extends javax.swing.JFrame {
         {
             try {
                 vt.silYakit(seciliYakit);
+            } catch (SQLException ex) {
+                Logger.getLogger(Form1.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+             try {
+                gosterYakit();
             } catch (SQLException ex) {
                 Logger.getLogger(Form1.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -1373,6 +1412,12 @@ public class Form1 extends javax.swing.JFrame {
             } catch (SQLException ex) {
                 Logger.getLogger(Form1.class.getName()).log(Level.SEVERE, null, ex);
             }
+            
+             try {
+                gosterIlan();
+            } catch (SQLException ex) {
+                Logger.getLogger(Form1.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_ilansilBTActionPerformed
 
@@ -1386,6 +1431,12 @@ public class Form1 extends javax.swing.JFrame {
 
             try {
                 vt.guncelleRenk(renk2,seciliRenk);
+            } catch (SQLException ex) {
+                Logger.getLogger(Form1.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+             try {
+                gosterRenk();
             } catch (SQLException ex) {
                 Logger.getLogger(Form1.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -1410,6 +1461,12 @@ public class Form1 extends javax.swing.JFrame {
         {
             try {
                 vt.guncelleAraba(arb,seciliAraba);
+            } catch (SQLException ex) {
+                Logger.getLogger(Form1.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+             try {
+                gosterAraba();
             } catch (SQLException ex) {
                 Logger.getLogger(Form1.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -1439,6 +1496,12 @@ public class Form1 extends javax.swing.JFrame {
             } catch (SQLException ex) {
                 Logger.getLogger(Form1.class.getName()).log(Level.SEVERE, null, ex);
             }
+            
+             try {
+                gosterIlan();
+            } catch (SQLException ex) {
+                Logger.getLogger(Form1.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
        }
     }//GEN-LAST:event_ilan_upBTActionPerformed
@@ -1458,6 +1521,12 @@ public class Form1 extends javax.swing.JFrame {
 
             try {
                 vt.guncelleYakit(yakit,seciliYakit);
+            } catch (SQLException ex) {
+                Logger.getLogger(Form1.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+             try {
+                gosterYakit();
             } catch (SQLException ex) {
                 Logger.getLogger(Form1.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -1483,6 +1552,12 @@ public class Form1 extends javax.swing.JFrame {
             } catch (SQLException ex) {
                 Logger.getLogger(Form1.class.getName()).log(Level.SEVERE, null, ex);
             }
+            
+             try {
+                gosterSehir();
+            } catch (SQLException ex) {
+                Logger.getLogger(Form1.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
        }
     }//GEN-LAST:event_sehir_upBTActionPerformed
@@ -1502,6 +1577,12 @@ public class Form1 extends javax.swing.JFrame {
 
             try {
                 vt.guncelleVites(vites,seciliSehir);
+            } catch (SQLException ex) {
+                Logger.getLogger(Form1.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+             try {
+                gosterVites();
             } catch (SQLException ex) {
                 Logger.getLogger(Form1.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -1693,7 +1774,8 @@ public class Form1 extends javax.swing.JFrame {
         DefaultComboBoxModel<String> cm=new DefaultComboBoxModel<>();
         for(Araba a:araba){
             System.out.println(a.getMarka());
-            cm.addElement(""+a.getMarka()+" "+a.getModel()+" "+a.getRenkID()+ " "+a.getVitesID() + " " + a.getYakitID() );
+            cm.addElement(""+a.getMarka()+" "+a.getModel()+" "+vt.gosterIlanRenk(a.getRenkID()).getRenk()+ 
+                    " "+vt.gosterIlanVites(a.getVitesID()).getVites() + " " + vt.gosterIlanYakit(a.getYakitID()).getYakit() );
         }
         
         // Eklenen verileri combobox modeline atama işlemi yapılır.

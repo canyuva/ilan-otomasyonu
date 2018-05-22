@@ -25,8 +25,8 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jTabbedPane1" min="-2" pref="834" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
+              <Component id="jTabbedPane1" pref="1099" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -82,11 +82,11 @@
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="ilanadi" alignment="0" max="32767" attributes="0"/>
                                           <Component id="fiyat" alignment="0" max="32767" attributes="0"/>
                                           <Component id="km" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="arabaCB" alignment="0" pref="247" max="32767" attributes="0"/>
+                                          <Component id="arabaCB" alignment="0" max="32767" attributes="0"/>
                                           <Component id="sehirCB" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="ilanadi" alignment="0" min="-2" pref="393" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -130,11 +130,11 @@
                               </Group>
                               <EmptySpace min="-2" pref="180" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="1" attributes="0">
                                   <Component id="ekle_renk" min="-2" max="-2" attributes="0"/>
-                                  <Group type="102" attributes="0">
+                                  <Group type="102" alignment="1" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="jLabel9" alignment="0" min="-2" max="-2" attributes="0"/>
                                           <Group type="102" alignment="0" attributes="0">
@@ -174,7 +174,7 @@
                                       </Group>
                                   </Group>
                               </Group>
-                              <EmptySpace min="45" max="32767" attributes="0"/>
+                              <EmptySpace min="-2" pref="102" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -1441,12 +1441,12 @@
                                               <EmptySpace min="-2" pref="139" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
-                                      <EmptySpace pref="271" max="32767" attributes="0"/>
+                                      <EmptySpace pref="493" max="32767" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="1" attributes="0">
                                       <EmptySpace max="32767" attributes="0"/>
                                       <Component id="vitessilCB" min="-2" pref="270" max="-2" attributes="0"/>
-                                      <EmptySpace pref="283" max="32767" attributes="0"/>
+                                      <EmptySpace pref="448" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
